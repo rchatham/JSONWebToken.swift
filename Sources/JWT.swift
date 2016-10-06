@@ -50,9 +50,8 @@ public enum Algorithm : CustomStringConvertible {
   func sign(_ message:String) -> String {
     
     func signRSA(_ key: Data) -> String {
-      let messageData = message.data(using: String.Encoding.utf8, allowLossyConversion: false)!
       let heimdall = Heimdall(publicTag: "org.cocode.JWT", publicKeyData: key)!
-      return heimdall.sign(base64encode(messageData))!
+      return heimdall.sign(message, urlEncode: true)!
     }
     
     func signHS(_ key: Data, variant:CryptoSwift.HMAC.Variant) -> String {

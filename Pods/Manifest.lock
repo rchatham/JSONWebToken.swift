@@ -1,0 +1,25 @@
+PODS:
+  - CryptoSwift (0.6.0)
+  - Heimdall (1.0.0)
+
+DEPENDENCIES:
+  - CryptoSwift
+  - Heimdall (from `https://github.com/rajeevpra/Heimdall.git`, branch `swift3`)
+
+EXTERNAL SOURCES:
+  Heimdall:
+    :branch: swift3
+    :git: https://github.com/rajeevpra/Heimdall.git
+
+CHECKOUT OPTIONS:
+  Heimdall:
+    :commit: e318f870ba4c85135c0642fc01a818b7ed4e4f67
+    :git: https://github.com/rajeevpra/Heimdall.git
+
+SPEC CHECKSUMS:
+  CryptoSwift: 4a599b7241b8d3b857d6e2c28867d0bd5d1aae24
+  Heimdall: 15b1b23a07213f02808fe0ef6007daf1c563d4e7
+
+PODFILE CHECKSUM: 39142c455ec3439569aeb94b9595177f862ad7a7
+
+COCOAPODS: 1.1.0.rc.2

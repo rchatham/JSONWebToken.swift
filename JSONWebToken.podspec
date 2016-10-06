@@ -13,5 +13,6 @@ Pod::Spec.new do |spec|
   spec.watchos.deployment_target = '2.0'
   spec.requires_arc = true
   spec.dependency 'CryptoSwift', '~> 0.6.0'
+  spec.dependency 'Heimdall', :git => 'https://github.com/rajeevpra/Heimdall.git', :branch => 'swift3'
   spec.module_name = 'JWT'
 end

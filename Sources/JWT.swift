@@ -1,5 +1,6 @@
 import Foundation
 import CryptoSwift
+import Heimdall
 
 public typealias Payload = [String: Any]
 
@@ -16,6 +17,15 @@ public enum Algorithm : CustomStringConvertible {
 
   /// HMAC using SHA-512 hash algorithm
   case hs512(Data)
+  
+  /// RSA using SHA-256 hash algorithm
+  case rs256(Data)
+  
+//  /// RSA using SHA-384 hash algorithm
+//  case rs384(Data)
+//  
+//  /// RSA using SHA-512 hash algorithm
+//  case rs512(Data)
 
   public var description:String {
     switch self {
@@ -27,11 +37,24 @@ public enum Algorithm : CustomStringConvertible {
       return "HS384"
     case .hs512:
       return "HS512"
+    case .rs256:
+      return "RS256"
+//    case .rs384:
+//      return "RS384"
+//    case .rs512:
+//      return "RS512"
     }
   }
 
   /// Sign a message using the algorithm
   func sign(_ message:String) -> String {
+    
+    func signRSA(_ key: Data) -> String {
+      let messageData = message.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+      let heimdall = Heimdall(publicTag: "org.cocode.JWT", publicKeyData: key)!
+      return heimdall.sign(base64encode(messageData))!
+    }
+    
     func signHS(_ key: Data, variant:CryptoSwift.HMAC.Variant) -> String {
       let messageData = message.data(using: String.Encoding.utf8, allowLossyConversion: false)!
       let mac = HMAC(key: key.bytes, variant:variant)
@@ -56,6 +79,15 @@ public enum Algorithm : CustomStringConvertible {
 
     case .hs512(let key):
       return signHS(key, variant: .sha512)
+      
+    case .rs256(let key):
+      return signRSA(key)
+      
+//    case .rs384(let key):
+//      return signRSA(key)
+//      
+//    case .rs512(let key):
+//      return signRSA(key)
     }
   }
 

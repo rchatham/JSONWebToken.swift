@@ -1,1 +1,2 @@
-github "krzyzanowskim/CryptoSwift" ~> 0.6.0
+# github "krzyzanowskim/CryptoSwift" ~> 0.6.0
+# github "henrinormak/Heimdall"

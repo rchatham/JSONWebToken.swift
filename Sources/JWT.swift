@@ -178,6 +178,18 @@ open class PayloadBuilder {
       payload["iat"] = newValue?.timeIntervalSince1970 as AnyObject?
     }
   }
+  
+  open var subject: String? {
+    get {
+      if let subject = payload["sub"] as? String {
+        return subject
+      }
+      return nil
+    }
+    set {
+      payload["sub"] = newValue
+    }
+  }
 
   open subscript(key: String) -> Any {
     get {
